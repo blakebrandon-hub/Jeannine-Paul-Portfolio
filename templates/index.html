@@ -72,11 +72,11 @@
 
         .section {
             scroll-margin-top: 80px;
+            margin-bottom: 60px;
         }
 
-        header {
+        .hero-section {
             text-align: center;
-            margin-bottom: 60px;
             padding: 40px 0;
             background: rgba(20, 20, 20, 0.9);
             border-radius: 20px;
@@ -118,7 +118,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
         .artwork-card {
@@ -190,6 +189,48 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(139, 115, 85, 0.4);
             background: linear-gradient(45deg, #a0956b 0%, #b8a976 100%);
+        }
+
+        .about-section {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .biography-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .artist-photo {
+            flex-shrink: 0;
+            width: 250px;
+            height: 300px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 3px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .biography-text {
+            flex: 1;
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .biography-text h3 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 400;
         }
 
         .contact-section {
@@ -297,6 +338,18 @@
                 font-size: 1rem;
                 padding: 8px 15px;
             }
+
+            .biography-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .artist-photo {
+                width: 200px;
+                height: 240px;
+            }
         }
     </style>
 </head>
@@ -304,29 +357,32 @@
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="#about">About Me</a></li>
                 <li><a href="#paintings">Paintings</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#contact">Contact the Artist</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <header id="about" class="section">
-            <h1 class="welcome-title">Welcome to my studio</h1>
-            <p class="artist-subtitle">Paintings by Jeannine Paul</p>
-            <div class="artist-statement">
-                "Love of nature, the outdoor beauty and tranquility are the elements that become subjects
-                of my landscape paintings. I like to experiment with different styles and take liberties,
-                exaggerating the shape and color until my painting comes alive and bounces off the canvas.
-                What I try to communicate in all my paintings is a sense of life and a beautiful moment.
-                I want the onlooker to feel happy when viewing my artwork, take in the beauty and enjoy."
+        <!-- PAINTINGS SECTION -->
+        <section id="paintings" class="section">
+            <div class="hero-section">
+                <h1 class="welcome-title">Welcome to my studio</h1>
+                <p class="artist-subtitle">Paintings by Jeannine Paul</p>
+                <div class="artist-statement">
+                    "Love of nature, the outdoor beauty and tranquility are the elements that become subjects
+                    of my landscape paintings. I like to experiment with different styles and take liberties,
+                    exaggerating the shape and color until my painting comes alive and bounces off the canvas.
+                    What I try to communicate in all my paintings is a sense of life and a beautiful moment.
+                    I want the onlooker to feel happy when viewing my artwork, take in the beauty and enjoy."
+                </div>
             </div>
-        </header>
+        </section>
 
-        <div id="paintings" class="gallery section">
+        <div class="gallery section">
             <div class="artwork-card">
-                <img src="static/images/lavender.jpg" alt="Lavender Fields" class="artwork-image" onclick="openModal(this.src)">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAH0BSIDAAIFAAhEUgAAA..." alt="Lavender Fields" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Lavender Fields</h3>
                     <p class="artwork-details">Oil on Canvas • 24" × 36" • 2023</p>
@@ -336,7 +392,7 @@
             </div>
 
             <div class="artwork-card">
-                <img src="static/images/vista.jpg" alt="Mountain Vista" class="artwork-image" onclick="openModal(this.src)">
+                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&crop=center" alt="Mountain Vista" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Mountain Vista</h3>
                     <p class="artwork-details">Oil on Canvas • 30" × 40" • 2023</p>
@@ -346,7 +402,7 @@
             </div>
 
             <div class="artwork-card">
-                <img src="static/images/morning.jpg" alt="Coastal Morning" class="artwork-image" onclick="openModal(this.src)">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center" alt="Coastal Morning" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Coastal Morning</h3>
                     <p class="artwork-details">Oil on Canvas • 20" × 24" • 2023</p>
@@ -356,7 +412,7 @@
             </div>
 
             <div class="artwork-card">
-                <img src="static/images/autumn.jpg" alt="Autumn Path" class="artwork-image" onclick="openModal(this.src)">
+                <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=400&h=300&fit=crop&crop=center" alt="Autumn Path" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Autumn Path</h3>
                     <p class="artwork-details">Oil on Canvas • 18" × 24" • 2023</p>
@@ -366,7 +422,7 @@
             </div>
 
             <div class="artwork-card">
-                <img src="static/images/forest.jpg" alt="Forest Light" class="artwork-image" onclick="openModal(this.src)">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop&crop=center" alt="Forest Light" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Forest Light</h3>
                     <p class="artwork-details">Oil on Canvas • 22" × 28" • 2023</p>
@@ -376,7 +432,7 @@
             </div>
 
             <div class="artwork-card">
-                <img src="static/images/sunset.jpg" alt="Prairie Sunset" class="artwork-image" onclick="openModal(this.src)">
+                <img src="https://images.unsplash.com/photo-1464822759844-d150f075b900?w=400&h=300&fit=crop&crop=center" alt="Prairie Sunset" class="artwork-image" onclick="openModal(this.src)">
                 <div class="artwork-info">
                     <h3 class="artwork-title">Prairie Sunset</h3>
                     <p class="artwork-details">Oil on Canvas • 26" × 32" • 2023</p>
@@ -386,14 +442,33 @@
             </div>
         </div>
 
-        <div id="contact" class="contact-section section">
-            <h2 class="contact-title">Commission & Inquiries</h2>
-            <p class="contact-info">
-                Interested in a custom piece or have questions about available artwork?<br>
-                I'd love to hear from you and discuss how we can bring your vision to life.
-            </p>
-            <a href="mailto:jeannine.paul@email.com" class="contact-button">Get in Touch</a>
-        </div>
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="section">
+            <div class="about-section">
+                <div class="biography-section">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAIWARYDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBQYSITETIkFRYQcUcYGRMqGx..." alt="Jeannine Paul" class="artist-photo">
+                    
+                    <div class="biography-text">
+                        <h3>About the Artist</h3>
+                        <p>Jeannine S. Paul was born in Paris, France where her art education began. She attended classes at the Memphis College of Art intermittently from 1960 to 1989. Jeannine has traveled extensively and has painted many scenes captured by her mind's eye during these travels.</p>
+                        
+                        <p>Jeannine paints mostly impressionist, expressionist landscapes and florals in oil, watercolor and collage. She has won numerous awards in juried exhibits and many of her paintings are in private collections in the U.S. and France.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <div class="contact-section">
+                <h2 class="contact-title">Commission & Inquiries</h2>
+                <p class="contact-info">
+                    Interested in a custom piece or have questions about available artwork?<br>
+                    I'd love to hear from you and discuss how we can bring your vision to life.
+                </p>
+                <a href="mailto:jeannine.paul@email.com" class="contact-button">Get in Touch</a>
+            </div>
+        </section>
     </div>
 
     <!-- Modal for image viewing -->
