@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paintings - Jeannine S. Paul's Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0f1419 100%);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: #f0f0f0;
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 100px;
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #d4af37 0%, #c9a96e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .artwork-card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .artwork-card:hover .artwork-image {
+            transform: scale(1.05);
+        }
+
+        .artwork-info {
+            padding: 25px;
+        }
+
+        .artwork-title {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+            font-weight: 400;
+        }
+
+        .artwork-details {
+            color: #a0a0a0;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .artwork-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .sold-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 15px;
+            text-decoration: line-through;
+        }
+
+        .sold-status {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, #8b7355 0%, #a0956b 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 115, 85, 0.4);
+            background: linear-gradient(45deg, #a0956b 0%, #b8a976 100%);
+        }
+
+        .sold-button {
+            background: #555;
+            color: #999;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            width: 100%;
+            font-weight: 500;
+            cursor: not-allowed;
+        }
+
+        .contact-section {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+
+        .contact-button {
+            background: linear-gradient(45deg, #8b7355 0%, #a0956b 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 115, 85, 0.4);
+            background: linear-gradient(45deg, #a0956b 0%, #b8a976 100%);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 15px;
+                padding-top: 100px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#paintings">Paintings</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact the Artist</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Paintings Gallery</h1>
+            <p class="page-subtitle">Collection by Jeannine S. Paul</p>
+        </div>
+
+        <!-- LARGE WORKS SECTION -->
+        <section id="large-works" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Large Works</h2>
+                <p class="section-description">Expansive landscapes that capture the grandeur of nature's beauty</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&crop=center" alt="Mountain Vista" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Mountain Vista</h3>
+                        <p class="artwork-details">Oil on Canvas • 30" × 40" • 2023</p>
+                        <p class="artwork-price">$1,200</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Mountain Vista')">Inquire to Purchase</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1464822759844-d150f075b900?w=400&h=300&fit=crop&crop=center" alt="Prairie Sunset" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Prairie Sunset</h3>
+                        <p class="artwork-details">Oil on Canvas • 36" × 48" • 2023</p>
+                        <p class="artwork-price">$1,450</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Prairie Sunset')">Inquire to Purchase</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAH0BSIDAAIFAAhEUgAAA..." alt="Lavender Fields" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Lavender Fields</h3>
+                        <p class="artwork-details">Oil on Canvas • 30" × 40" • 2023</p>
+                        <p class="artwork-price">$1,150</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Lavender Fields')">Inquire to Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SMALL WORKS SECTION -->
+        <section id="small-works" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Small Works</h2>
+                <p class="section-description">Intimate studies perfect for smaller spaces and personal collections</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center" alt="Coastal Morning" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Coastal Morning</h3>
+                        <p class="artwork-details">Oil on Canvas • 16" × 20" • 2023</p>
+                        <p class="artwork-price">$450</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Coastal Morning')">Inquire to Purchase</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=400&h=300&fit=crop&crop=center" alt="Autumn Path" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Autumn Path</h3>
+                        <p class="artwork-details">Oil on Canvas • 12" × 16" • 2023</p>
+                        <p class="artwork-price">$325</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Autumn Path')">Inquire to Purchase</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop&crop=center" alt="Forest Light" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Forest Light</h3>
+                        <p class="artwork-details">Oil on Canvas • 14" × 18" • 2023</p>
+                        <p class="artwork-price">$380</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Forest Light')">Inquire to Purchase</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=300&fit=crop&crop=center" alt="Garden Blooms" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Garden Blooms</h3>
+                        <p class="artwork-details">Watercolor • 11" × 14" • 2023</p>
+                        <p class="artwork-price">$285</p>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Garden Blooms')">Inquire to Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLD SECTION -->
+        <section id="sold" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Sold Works</h2>
+                <p class="section-description">Recent paintings that have found their forever homes</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop&crop=center" alt="Valley Mist" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Valley Mist</h3>
+                        <p class="artwork-details">Oil on Canvas • 24" × 30" • 2023</p>
+                        <p class="sold-status">SOLD</p>
+                        <p class="sold-price">$850</p>
+                        <button class="sold-button">No Longer Available</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=300&fit=crop&crop=center" alt="Spring Meadow" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Spring Meadow</h3>
+                        <p class="artwork-details">Oil on Canvas • 20" × 24" • 2023</p>
+                        <p class="sold-status">SOLD</p>
+                        <p class="sold-price">$650</p>
+                        <button class="sold-button">No Longer Available</button>
+                    </div>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=300&fit=crop&crop=center" alt="Sunset Lake" class="artwork-image" onclick="openModal(this.src)">
+                    <div class="artwork-info">
+                        <h3 class="artwork-title">Sunset Lake</h3>
+                        <p class="artwork-details">Oil on Canvas • 18" × 24" • 2022</p>
+                        <p class="sold-status">SOLD</p>
+                        <p class="sold-price">$575</p>
+                        <button class="sold-button">No Longer Available</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <div class="contact-section">
+                <h2 class="contact-title">Commission & Inquiries</h2>
+                <p class="contact-info">
+                    Interested in a custom piece or have questions about available artwork?<br>
+                    I'd love to hear from you and discuss how we can bring your vision to life.
+                </p>
+                <a href="mailto:jeannine.paul@email.com" class="contact-button">Get in Touch</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal for image viewing -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImage.src = imageSrc;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function inquireAboutPurchase(artworkTitle) {
+            const subject = `Inquiry about "${artworkTitle}"`;
+            const body = `Hello Jeannine,\n\nI'm interested in learning more about your painting "${artworkTitle}". Could you please provide more details about:\n\n- Availability\n- Shipping information\n- Payment options\n\nThank you!\n\nBest regards`;
+            
+            window.location.href = `mailto:jeannine.paul@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Prevent modal from closing when clicking on the image
+        document.querySelector('.modal-content').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
