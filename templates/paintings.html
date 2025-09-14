@@ -396,7 +396,6 @@
                         <button class="buy-button" onclick="inquireAboutPurchase('Golden Valley')">Inquire to Purchase</button>
                     </div>
                 </div>
-                
             </div>
         </section>
 
@@ -414,7 +413,7 @@
                         <h3 class="artwork-title">Spring Blossoms</h3>
                         <p class="artwork-details">Gold frame • 12" × 15"</p>
                         <p class="artwork-price">$300.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Spring Blossoms')">Inquire to Purchase</button>
                     </div>
                 </div>
 
@@ -424,7 +423,7 @@
                         <h3 class="artwork-title">Night Sky</h3>
                         <p class="artwork-details">Oil on gallery-wrapped canvas • 12" × 12"</p>
                         <p class="artwork-price">$325</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Night Sky')">Inquire to Purchase</button>
                     </div>
                 </div>
 
@@ -434,7 +433,7 @@
                         <h3 class="artwork-title">Neuro Tree</h3>
                         <p class="artwork-details">Watercolor matted and framed • 12" × 15"</p>
                         <p class="artwork-price">$300.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Neuro Tree')">Inquire to Purchase</button>
                     </div>
                 </div>
 
@@ -444,19 +443,17 @@
                         <h3 class="artwork-title">Un Village</h3>
                         <p class="artwork-details">Oil on gallery-wrapped canvas • 12" × 33"</p>
                         <p class="artwork-price">$750.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Un Village')">Inquire to Purchase</button>
                     </div>
                 </div>
-            </div>
-        
 
-              <div class="artwork-card">
+                <div class="artwork-card">
                     <img src="static/images/small_works/provence_farmhouse.jpg" alt="Provence Farmhouse" class="artwork-image" onclick="openModal(this.src)">
                     <div class="artwork-info">
-                        <h3 class="artwork-title">Neuro Tree</h3>
+                        <h3 class="artwork-title">Provence Farmhouse</h3>
                         <p class="artwork-details">Watercolor matted and framed • 12" × 15"</p>
                         <p class="artwork-price">$300.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Provence Farmhouse')">Inquire to Purchase</button>
                     </div>
                 </div>
 
@@ -466,20 +463,20 @@
                         <h3 class="artwork-title">Autumn Rhapsody</h3>
                         <p class="artwork-details">Oil on gallery-wrapped canvas • 12" × 12"</p>
                         <p class="artwork-price">$500.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Autumn Rhapsody')">Inquire to Purchase</button>
                     </div>
                 </div>
 
-                    <div class="artwork-card">
+                <div class="artwork-card">
                     <img src="static/images/small_works/evening_delight.jpg" alt="Evening Delight" class="artwork-image" onclick="openModal(this.src)">
                     <div class="artwork-info">
                         <h3 class="artwork-title">Evening Delight</h3>
                         <p class="artwork-details">Oil on gallery-wrapped canvas • 8" × 8"</p>
                         <p class="artwork-price">$300.00</p>
-                        <button class="buy-button" onclick="location.href='#contact'">Inquire to Purchase</button>
+                        <button class="buy-button" onclick="inquireAboutPurchase('Evening Delight')">Inquire to Purchase</button>
                     </div>
                 </div>
-
+            </div>
         </section>
 
         <!-- SOLD SECTION -->
@@ -529,17 +526,18 @@
         <section id="contact" class="section">
             <div class="contact-section">
                 <h2 class="contact-title">Commission & Inquiries</h2>
-                    <p class="contact-info">
+                <p class="contact-info">
                     Interested in a custom piece or have questions about available artwork?<br>
-                    I'd love to hear from you and discuss how we can bring your vision to life.</p>
-             
-                    <p class="contact-info" style="color: white;">
+                    I'd love to hear from you and discuss how we can bring your vision to life.
+                </p>
+                
+                <p class="contact-info" style="color: white;">
                     JEANNINE S. PAUL<br>
                     <i style="color: #c0c0c0;">Artist</i><br>
                     jeanninespaul@gmail.com<br>
                     901-581-0622
                 </p>
-                <a href="mailto:jeannine.paul@email.com" class="contact-button">Get in Touch</a>
+                <a href="mailto:jeanninespaul@gmail.com" class="contact-button">Get in Touch</a>
             </div>
         </section>
     </div>
@@ -571,7 +569,7 @@
             const subject = `Inquiry about "${artworkTitle}"`;
             const body = `Hello Jeannine,\n\nI'm interested in learning more about your painting "${artworkTitle}". Could you please provide more details about:\n\n- Availability\n- Shipping information\n- Payment options\n\nThank you!\n\nBest regards`;
             
-            window.location.href = `mailto:jeannine.paul@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:jeanninespaul@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
         // Close modal with Escape key
